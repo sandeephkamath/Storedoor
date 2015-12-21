@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Storedoor</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="base_url">http://www.storedoor.in/index.php?route=feed/web_api</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="no_products_under_category">No products found</string>
+    <string name="title_activity_fabbase">FABBaseActivity</string>
+    <string name="title_activity_fabnavigation_drawer_base">FABNavigationDrawerBaseActivity</string>
+    <string name="guest_user">Guest User</string>
+    <string name="title_activity_cart">CartActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cart">Cart</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="added_to_cart">Successfully added to cart</string>
+
+</resources>
