@@ -125,6 +125,7 @@ public class NavigationDrawerFragment extends BaseFragment {
                 Intent intent = new Intent(getActivity(), CategoryDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(Constants.EXTRA_CATEGORY, mCategories.get(groupPosition));
+                bundle.putInt(Constants.EXTRA_SUB_CATEGORY_POSITION, childPosition);
                 intent.putExtras(bundle);
                 startActivity(intent);
 

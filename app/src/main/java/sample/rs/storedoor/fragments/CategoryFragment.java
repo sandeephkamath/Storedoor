@@ -16,6 +16,7 @@ import sample.rs.storedoor.adapter.CategoryPagerAdapter;
 import sample.rs.storedoor.adapter.ProductListAdapter;
 import sample.rs.storedoor.custom.CustomTabLayout;
 import sample.rs.storedoor.models.Category;
+import sample.rs.storedoor.util.ToastUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,19 +24,22 @@ import sample.rs.storedoor.models.Category;
 public class CategoryFragment extends BaseFragment {
 
     private static final String ARG_CATEGORY = "arg_category";
+    private static final String ARG_SUB_CATEGORY_POSITION = "arg_sub_category";
     private CustomTabLayout mTabLayout;
     private Category mCategory;
     private CategoryPagerAdapter mCategoryPagerAdapter;
     private static ProductListAdapter.ProductSelectListener mListener;
     private ViewPager mCategoryPager;
+    private int mSubCategoryPosition;
 
     public CategoryFragment() {
         // Required empty public constructor
     }
 
-    public static CategoryFragment newInstance(Category category, ProductListAdapter.ProductSelectListener listener) {
+    public static CategoryFragment newInstance(Category category, int subCategoryPosition, ProductListAdapter.ProductSelectListener listener) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(ARG_CATEGORY, category);
+        bundle.putInt(ARG_SUB_CATEGORY_POSITION, subCategoryPosition);
         CategoryFragment categoryFragment = new CategoryFragment();
         mListener = listener;
         categoryFragment.setArguments(bundle);
@@ -58,17 +62,20 @@ public class CategoryFragment extends BaseFragment {
         initPagerAdapter();
         setPagerAdapter();
         addTabLayoutPagerInteraction();
+        mCategoryPager.setCurrentItem(mSubCategoryPosition);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategory = (Category) getArguments().getParcelable(ARG_CATEGORY);
+        mSubCategoryPosition = getArguments().getInt(ARG_SUB_CATEGORY_POSITION);
     }
 
     private void initPagerAdapter() {
-        if (null != mCategory.getCategories())
+        if (null != mCategory.getCategories()) {
             mCategoryPagerAdapter = new CategoryPagerAdapter(getChildFragmentManager(), mCategory, mListener);
+        }
     }
 
     private void setPagerAdapter() {

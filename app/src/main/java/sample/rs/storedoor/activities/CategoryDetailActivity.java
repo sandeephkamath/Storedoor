@@ -20,6 +20,7 @@ import sample.rs.storedoor.util.ToastUtil;
 public class CategoryDetailActivity extends FABNavigationDrawerBaseActivity {
 
     private Category mCategory;
+    private int mSubCategoryPosition;
 
 
     @Override
@@ -27,13 +28,14 @@ public class CategoryDetailActivity extends FABNavigationDrawerBaseActivity {
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_category_detail);
         mCategory = getIntent().getExtras().getParcelable(Constants.EXTRA_CATEGORY);
+        mSubCategoryPosition = getIntent().getExtras().getInt(Constants.EXTRA_SUB_CATEGORY_POSITION);
         loadCategoryFragment();
         setToolBarTitle(StringUtil.removeAmp(mCategory.getName()));
     }
 
 
     private void loadCategoryFragment() {
-        CategoryFragment categoryFragment = CategoryFragment.newInstance(mCategory, new ProductListAdapter.ProductSelectListener() {
+        CategoryFragment categoryFragment = CategoryFragment.newInstance(mCategory, mSubCategoryPosition, new ProductListAdapter.ProductSelectListener() {
             @Override
             public void onProductSelected(Product product) {
                 ToastUtil.showToast(CategoryDetailActivity.this, product.getPrice());
